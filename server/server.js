@@ -29,15 +29,23 @@ app.get('/api/v1/restaurants/:id', (req, res) => {
 
 //Create a restaurant
 app.post('/api/v1/restaurants', (req, res) => {
-    console.log(req.body)
-    res.json(req.body)
+    res.status(201).json({
+        status: "Success",
+        data: {
+            restaurant: {name: 'McDonalds', city: 'Denver'}
+        }
+    })
 })
 
 // Update a restaurant
 
 app.put('/api/v1/restaurants/:id', (req, res) => {
-    console.log(req.params.id)
-    console.log(req.body)
+    res.status(200).json({
+        status: "Success",
+        data: {
+            restaurant: {name: 'McDonalds', city: 'Denver'}
+        }
+    })
 })
 
 //Delete a restaurant
