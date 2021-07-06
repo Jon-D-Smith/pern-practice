@@ -23,11 +23,14 @@ app.get('/api/v1/restaurants', async (req, res) => {
 })
 
 //Getting an individual restaurant
-app.get('/api/v1/restaurants/:id', (req, res) => {
+app.get('/api/v1/restaurants/:id', async (req, res) => {
+    const { id } = req.params
+    const result = await db.query('SELECT * FROM restaurants WHERE id = $1', [id])
+
     res.status(200).json({
         status: "Success",
         data: {
-            restaurant: {name: 'McDonalds', city: 'Denver'}
+            restaurant: result.rows
         }
     })
 })
