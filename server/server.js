@@ -50,7 +50,9 @@ app.put('/api/v1/restaurants/:id', (req, res) => {
 
 //Delete a restaurant
 app.delete('/api/v1/restaurants/:id', (req, res) => {
-    console.log(req.params.id)
+    res.status(204).json({
+        status: "success"
+    })
 })
 
 const PORT = process.env.PORT || 3000
