@@ -2,10 +2,13 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import RestaurantDetailPage from './routes/RestaurantDetailPage';
 import Home from './routes/Home';
 import UpdatePage from './routes/UpdatePage';
+import { RestaurantsContextProvider } from './context/RestaurantsContext';
 
 
 const App = () => {
     return ( 
+        <RestaurantsContextProvider>
+
         <div className="container">
             <Router>
                 <Switch>
@@ -16,6 +19,7 @@ const App = () => {
             </Router>
 
         </div>
+        </RestaurantsContextProvider>
      );
 }
  
