@@ -1,11 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import RestaurantFinder from "../apis/RestaurantFinder";
 
 const UpdateRestaurant = (props) => {
     const {id} = useParams()
     const [name, setName] = useState("")
     const [location, setLocation] = useState("")
     const [priceRange, setPriceRange] = useState("")
+
+    useEffect( ()  => {
+        const fetchData = async() => {
+            const response = await RestaurantFinder.get(`/${id}`)
+            setName(response.data.data.restaurant.name)
+            setLocation(response.data.data.restaurant.location)
+            setPriceRange(response.data.data.restaurant.price_range)
+        }
+        fetchData()
+    }, [])
     return ( 
         <div>
             <form action="">
