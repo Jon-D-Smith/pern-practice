@@ -1,10 +1,28 @@
-import { useState } from "react"
-
+import { useContext, useState } from "react"
+import RestaurantFinder from "../apis/RestaurantFinder"
+import { RestaurantsContext } from "../context/RestaurantsContext"
 
 const AddRestaurant = () => {
+    const {addRestaurants} = useContext(RestaurantsContext)
     const [name,setName] = useState("")
     const [location,setLocation] = useState("")
     const [priceRange,setPriceRange] = useState("Price Range")
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try{
+           const response = await RestaurantFinder.post("/", {
+                name,
+                location,
+                price_range: priceRange
+            })
+            addRestaurants(response.data.data.restaurant)
+            console.log(response)
+        } catch (err) {
+            console.log(err)
+        }
+    }
 
     return (
         <div className="mb-4">
@@ -27,7 +45,7 @@ const AddRestaurant = () => {
                         </select>
                     </div>
                     <div className="col">
-                    <button className="btn btn-primary">Add</button>
+                    <button type="submit" onClick={handleSubmit} className="btn btn-primary">Add</button>
                     </div>
                     
                 </div>
