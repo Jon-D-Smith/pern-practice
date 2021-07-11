@@ -1,7 +1,10 @@
+import UpdateRestaurant from "../components/updateRestaurant"
+
 const UpdatePage = () => {
     return ( 
         <div>
-            Update Page
+            <h1 className="text-center">Update Restaurant</h1>
+            <UpdateRestaurant />
         </div>
      );
 }
