@@ -32,6 +32,11 @@ const UpdateRestaurant = (props) => {
         history.push('/')
     }
 
+    const handleCancel = (e) => {
+        e.preventDefault()
+        history.push('/')
+    }
+
     return ( 
         <div>
             <form action="">
@@ -47,7 +52,8 @@ const UpdateRestaurant = (props) => {
                     <label htmlFor="price_range">Price Range</label>
                     <input value={priceRange} onChange={e => setPriceRange(e.target.value)} type="number" id="price_range" className="form-control" />
                 </div>
-                <button type="submit" onClick={handleSubmit} className="btn btn-primary">Submit</button>
+                <button type="submit" onClick={handleSubmit} className="btn btn-primary mt-2">Submit</button>
+                <button onClick={handleCancel} className="btn btn-secondary mt-2 ms-5">Cancel</button>
             </form>
         </div>
      );
